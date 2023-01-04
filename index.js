@@ -9,8 +9,12 @@ var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 const xdg = require("superagent");
 
+// Variables d'environnement
+const host = process.env.host;
+
+
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.get("/upload/cover.gif", function(req,res){
@@ -18,7 +22,7 @@ app.get("/upload/cover.gif", function(req,res){
 });
 
 app.get("/upload/index.gif", function(req,res){
-  res.sendFile(__dirname+"/sky.gif")
+  res.sendFile(__dirname+"/files/sky.gif")
 })
 
 const ws = new ReconnectingWebSocket('wss://ws.dogenano.io', [], {
@@ -53,19 +57,19 @@ ws.onmessage = msg => {
 app.post("/info", function(req,res){
 
   if (req.body.q.startsWith("xdg_")){
-    res.redirect("https://dogechain.celio.space/account/?id="+req.body.q)
+    res.redirect(host + "/account/?id="+req.body.q)
   }
   if (!req.body.q.startsWith("xdg_")) {
-    res.redirect("https://dogechain.celio.space/hash/?id="+req.body.q)
+    res.redirect(host + "/hash/?id="+req.body.q)
   }
 });
 
 app.get("/hash/", function(req,res){
-   res.sendFile(__dirname+"/hash.html");
+   res.sendFile(__dirname+"/public/hash.html");
 });
 
 app.get("/account/", function(req,res){
-   res.sendFile(__dirname+"/account.html");
+   res.sendFile(__dirname+"/public/account.html");
 });
 
 

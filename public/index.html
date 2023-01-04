@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-image: url('/upload/index.gif');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    #search-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #search-form {
+      display: flex;
+      align-items: center;
+      width: 400px;
+    }
+
+    @media (max-width: 1000px) {
+      body {
+        background-repeat: repeat;
+      }
+    }
+
+    #search-bar {
+      width: 75%;
+      height: 40px;
+      border-radius: 20px;
+      border: 2px solid black;
+      padding: 0 10px;
+      font-size: 20px;
+      box-sizing: border-box;
+    }
+
+    #search-button {
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #search-button:hover {
+      background-color: lightgray;
+    }
+
+    #search-button:active {
+      background-color: gray;
+    }
+
+    #search-button img {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="search-container">
+    <img src="/upload/happy.png" alt="Happy doge" width="200px" height="200px">
+    <form id="search-form" action="/info" method="POST">
+      <input type="text" id="search-bar" placeholder="Find A Hash/Account:" name="q" required>
+      <button type="submit" id="search-button">
+        <img src="https://img.icons8.com/material-rounded/24/000000/search.png" alt="Search icon">
+      </button>
+    </form>
+  </div>
+</body>
+</html>
